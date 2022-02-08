@@ -14,47 +14,16 @@ public class Inning {
     return run;
   }
 
-  public void batting(Team team) {
-    int striker = 0;
-    int nonStriker = 1;
-    for (int i = 0; i < OVER; i++) {
-      for (int j = 0; j < BALLS; j++) {
-        int perBallHit = team.players.get(striker).doBat();
-        if (perBallHit < 7) {
-          team.players.get(striker).setScore(perBallHit);
-          run += perBallHit;
-          System.out.println("playerNo " + striker + " hit " + perBallHit);
-          if (perBallHit % 2 != 0) {
-            int temp = striker;
-            striker = nonStriker;
-            nonStriker = temp;
-          }
-        } else {
-          System.out.println(
-              "playerNo " + striker + " out on " + team.players.get(striker).getScore());
-          wicket++;
-          System.out.println("Current scoreboard is: " + run + "/" + wicket);
-          striker = Math.max(striker, nonStriker);
-          striker++;
-          if (wicket == 10) break;
-        }
-      }
-      int temp = striker;
-      striker = nonStriker;
-      nonStriker = temp;
-      if (wicket == 10) {
-        System.out.println("All out teamA");
-        break;
-      }
-    }
+  public int randomFunction() {
+    return (int) (Math.random() * 8);
   }
 
-  public void batting(Team team, int target, int toss) {
+  public void batting(Team team, int target) {
     int striker = 0;
     int nonStriker = 1;
     for (int i = 0; i < OVER; i++) {
       for (int j = 0; j < BALLS; j++) {
-        int perBallHit = team.players.get(striker).doBat();
+        int perBallHit = randomFunction();
         if (perBallHit < 7) {
           team.players.get(striker).setScore(perBallHit);
           run += perBallHit;
@@ -66,12 +35,15 @@ public class Inning {
           if (run >= target) {
             return;
           }
-          System.out.println("playerNo " + striker + " hit " + perBallHit);
+          System.out.println(team.players.get(striker).playerName + " hit " + perBallHit);
         } else {
           System.out.println(
-              "playerNo " + striker + " out on " + team.players.get(striker).getScore());
+              team.players.get(striker).playerName
+                  + striker
+                  + " out on "
+                  + team.players.get(striker).getScore());
           wicket++;
-          System.out.println("Current scoreboard is: " + run + "/" + wicket);
+          System.out.println("Current scoreboard of " + team.name + " is: " + run + "/" + wicket);
           striker = Math.max(striker, nonStriker);
           striker++;
 
@@ -82,7 +54,7 @@ public class Inning {
       striker = nonStriker;
       nonStriker = temp;
       if (wicket == 10) {
-        System.out.println("All out teamA");
+        System.out.println("All out " + team.name);
         break;
       }
     }
