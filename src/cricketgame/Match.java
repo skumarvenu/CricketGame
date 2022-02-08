@@ -1,11 +1,9 @@
 package cricketgame;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Match {
 
-  final int toss = (int) (Math.random() * 2);
 
   public Result play(Team team1, Team team2) {
     Result result = new Result();
@@ -31,9 +29,9 @@ public class Match {
             + inning2.getWicket());
     if (inning1.getRun() > inning2.getRun()) {
       result.setRun(inning1.getRun() - inning2.getRun());
-      result.winnerTeam = team1.name;
+      result.setWinnerTeam(team1.name);
     } else {
-      result.winnerTeam = team2.name;
+      result.setWinnerTeam(team2.name);
       result.setWicket(10 - inning2.getWicket());
     }
     return result;
