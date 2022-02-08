@@ -39,7 +39,6 @@ public class Inning {
         } else {
           System.out.println(
               team.players.get(striker).playerName
-                  + striker
                   + " out on "
                   + team.players.get(striker).getScore());
           wicket++;

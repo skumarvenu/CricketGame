@@ -10,8 +10,9 @@ public class Match {
   public Result play(Team team1, Team team2) {
     Result result = new Result();
     Inning inning1 = new Inning();
-    inning1.batting(team1, 366);
     System.out.println(team1.name + " going to bat first");
+    inning1.batting(team1, 366);
+
     System.out.println(
         "Final Score of "
             + team1.name
