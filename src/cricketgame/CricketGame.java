@@ -16,7 +16,7 @@ public class CricketGame {
     Team team1 = new Team(teamName1);
     Team team2 = new Team(teamName2);
 
-    MatchController matchController = new MatchController();
+    MatchController matchController = new MatchController(new OneDay());
     matchController.start(team1, team2);
   }
 }
